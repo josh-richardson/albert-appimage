@@ -10,4 +10,6 @@ docker build -t albert .
 
 After the build process has completed, `./Albert-latest-x86_64.AppImage` should appear in the 'host' directory, however it probably won't because I don't check out a specific branch or pin the version of appimage-builder used, so it'll probably stop working very soon.
 
+Alternatively just download the release, and let me know if the AppImage somehow doesn't work on your system.
+
 At some point I should tidy this up and make it less awful.
