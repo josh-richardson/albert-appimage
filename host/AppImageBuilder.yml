@@ -1,0 +1,73 @@
+# appimage-builder recipe see https://appimage-builder.readthedocs.io for details
+version: 1
+AppDir:
+  path: ./AppDir
+  app_info:
+    id: albert
+    name: Albert
+    icon: albert
+    version: latest
+    exec: usr/local/bin/albert
+    exec_args: $@
+  runtime:
+    env:
+      APPDIR_LIBRARY_PATH: $APPDIR/lib/x86_64-linux-gnu/:$APPDIR/lib/x86_64-linux-gnu:$APPDIR/usr/lib/x86_64-linux-gnu:$APPDIR/usr/lib/x86_64-linux-gnu/albert/plugins:$APPDIR/home/joshua/albert/albert-build/AppDir/usr/bin/../lib/x86_64-linux-gnu/albert
+      ALBERT_PLUGIN_PATH: $APPDIR/usr/local/lib/albert/plugins
+  apt:
+    arch: amd64
+    allow_unauthenticated: true
+    sources:
+    - sourceline: deb http://deb.debian.org/debian/ buster main
+    - sourceline: deb http://security.debian.org/debian-security buster/updates main
+    - sourceline: deb http://deb.debian.org/debian/ buster-updates main
+    - sourceline: deb [arch=amd64] https://download.docker.com/linux/debian buster
+        stable
+    # - sourceline: deb http://download.opensuse.org/repositories/home:/manuelschneid3r/Debian_10/ /
+    include:
+    - libdbus-1-3
+    - libexpat1
+    - libgcrypt20
+    - liblzma5
+    - libpcre3
+    - libqt5sql5-sqlite
+    - libsystemd0
+    - libtinfo6
+    - libuuid1
+    - libc6
+    - libgcc1
+    - libmuparser2v5
+    - libpython3.7
+    - libqt5concurrent5
+    - libqt5core5a
+    - libqt5dbus5
+    - libqt5gui5
+    - libqt5network5
+    - libqt5qml5
+    - libqt5quick5
+    - libqt5sql5
+    - libqt5svg5
+    - libqt5widgets5
+    - libqt5x11extras5
+    - libstdc++6
+    - libx11-6
+    - libxext6
+    - libqt5sql5-sqlite
+    - libqt5charts5
+    - qml-module-qtgraphicaleffects
+    - qml-module-qtquick-controls
+    - libxkbcommon0 
+    - libxkbcommon-x11-0
+    - libsqlite3-0
+    exclude: []
+  files:
+    exclude:
+    - usr/share/man
+    - usr/share/doc/*/README.*
+    - usr/share/doc/*/changelog.*
+    - usr/share/doc/*/NEWS.*
+    - usr/share/doc/*/TODO.*
+
+AppImage:
+  arch: x86_64
+  update-information: None
+  sign-key: None
