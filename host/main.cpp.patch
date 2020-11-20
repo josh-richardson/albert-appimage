@@ -1,0 +1,27 @@
+diff --git a/src/app/main.cpp b/src/app/main.cpp
+index 9bfbbcd..4a4f71e 100644
+--- a/src/app/main.cpp
++++ b/src/app/main.cpp
+@@ -103,7 +103,6 @@ int main(int argc, char **argv) {
+             ::exit(EXIT_SUCCESS);
+         } else if ( args.count() == 1 ) {
+             qInfo("There is no other instance of albert running.");
+-            ::exit(EXIT_FAILURE);
+         }
+ 
+         delete capp;
+@@ -299,9 +298,12 @@ int main(int argc, char **argv) {
+ 
+         // Define plugindirs
+         QStringList pluginDirs;
+-        if ( parser.isSet("plugin-dirs") )
++        QString pluginEnvResult = qgetenv("ALBERT_PLUGIN_PATH");
++        if ( parser.isSet("plugin-dirs") ) {
+             pluginDirs = parser.value("plugin-dirs").split(',');
+-        else {
++        } else if (!pluginEnvResult.isEmpty()) {
++            pluginDirs = pluginEnvResult.split(',');
++        } else {
+ #if defined __linux__ || defined __FreeBSD__
+             QStringList dirs = {
+ #if defined MULTIARCH_TUPLE

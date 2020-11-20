@@ -1,5 +1,8 @@
 git clone --recursive git://github.com/albertlauncher/albert.git /albert
-cp /host/main.cpp /albert/src/app/main.cpp
+cp /host/main.cpp.patch /albert/src/app/main.cpp.patch
+cd /albert/src/app/
+patch < main.cpp.patch
+cd /
 mkdir albert-build
 cd albert-build
 cmake /albert -DBUILD_VIRTUALBOX=OFF -DBUILD_WITH_QTCHARTS=OFF
